@@ -1,13 +1,5 @@
-function testButton() {
-    let spaceCounter = 0;
+function applyBionicReader() {
     const p1 = document.getElementById('p1').innerText;
-    const space = " ";
-    //iterate through string, collect each word and operate on it before moving to next word
-    for (let i = 0; i < p1.length; i++) {
-        if (p1[i] === space) {
-            spaceCounter++;
-        }
-    }
     const anchoredText = addAnchors(p1);
     document.getElementById('p2').innerHTML = anchoredText;
 }

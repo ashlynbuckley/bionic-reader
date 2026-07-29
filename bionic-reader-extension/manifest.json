@@ -1,0 +1,16 @@
+{
+  "name": "Bionic Reader",
+  "description": "Detect text on a webpage and apply the bionic reading technique!",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "hello.html",
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ]
+}
