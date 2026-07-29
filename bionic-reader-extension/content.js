@@ -1,23 +1,34 @@
-const tTexts = countFoundTexts();
+const tTexts = findText();
 console.log("tTexts: ",tTexts);
 
-function countFoundTexts() {
-    const textTreeWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    highlightTexts(textTreeWalker);
-    let count = 0;
-    while (textTreeWalker.nextNode()) {
-        count++;
+function findText() {
+    const filter = {
+        acceptNode(node) {
+            //no whitespace
+            if (!node.textContent.trim()) {
+                return NodeFilter.FILTER_REJECT;
+            }
+            const parent = node.parentElement;
+            if (!parent) {
+                return NodeFilter.FILTER_REJECT;
+            }
+            //get rid of extra crap
+            if (["SCRIPT", "STYLE", "NOSCRIPT"].includes(parent.tagName)) {
+                return NodeFilter.FILTER_REJECT;
+            }
+            return NodeFilter.FILTER_ACCEPT;
+        }
     }
-    return count;
+    const textTreeWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, filter);
+    applyBionicReader(textTreeWalker);
+    // let count = 0;
+    // while (textTreeWalker.nextNode()) {
+    //     count++;
+    // }
+    // return count;
 }
 
-function highlightTexts(textNodes) {
- for (let i = 0; i < 5; i++) {
-     console.log(textNodes.nextNode());
- }
-}
-
-function applyBionicReader() {
+function applyBionicReader(nodes) {
     const p1 = document.getElementById('p1').innerText;
     const anchoredText = addAnchors(p1);
     document.getElementById('p2').innerHTML = anchoredText;
