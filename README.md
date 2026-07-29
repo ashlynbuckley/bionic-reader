@@ -1,5 +1,5 @@
 # The Bionic Reader
-## Genesys Slackathon Project 2026, by Ashlyn Buckley 🔥
+## Genesys Slackathon Project 2026 🔥
 
 ---
 
